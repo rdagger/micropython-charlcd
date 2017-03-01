@@ -9,5 +9,6 @@ Implementation includes:
 * Enable/disable blinking and underline cursor
 * Enable/disable display
 * Scroll text
+* Custom characters
 
 _Demo Included:_  Demonstrates most functionality.

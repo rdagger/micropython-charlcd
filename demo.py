@@ -50,7 +50,17 @@ def run():
     sleep(2.0)
 
     # The End
+    lcd.create_char(0, bytearray([7, 12, 24, 16, 22, 22, 22, 16]))
+    lcd.create_char(1, bytearray([28, 6, 3, 1, 13, 13, 13, 1]))
+    lcd.create_char(2, bytearray([16, 20, 20, 23, 19, 24, 12, 7]))
+    lcd.create_char(3, bytearray([1, 1, 5, 29, 25, 3, 6, 28]))
     lcd.clear()
     lcd.message('The', 3)
+    lcd.home()
+    lcd.message('\x00')
+    lcd.message('\x01')
     lcd.set_line(1)
     lcd.message('End', 3)
+    lcd.set_cursor(0, 1)
+    lcd.message('\x02')
+    lcd.message('\x03')

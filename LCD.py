@@ -25,6 +25,7 @@ class CharLCD(object):
     LCD_DISPLAYCONTROL = 0x08
     LCD_HOME = 0x02
     LCD_SETDDRAMADDR = 0x80
+    LCD_SETCGRAMADDR = 0x40
 
     # Control flags
     LCD_DISPLAYON = 0x04
@@ -83,6 +84,25 @@ class CharLCD(object):
         """Clear and home LCD display."""
         self.lcd_byte(self.LCD_CLEAR, self.LCD_CMD)
         sleep(self.HOMEDELAY)  # required
+
+    def create_char(self, location, pattern):
+        r"""Add custom character to LCD display.
+
+        Args:
+            location (int):  There are 8 CGRAM locations available (0 to 7).
+            pattern ([byte]):  Byte array comprising custom character.
+        Notes:
+            There is an online tool to create custom characters:
+            http://www.quinapalus.com/hd44780udg.html
+            Character size should be 5x8.
+            To show your custom character use hex address 0 to 7.
+            example:  lcd.message('\x03')
+        """
+        # only position 0..7 are allowed
+        location &= 0x7
+        self.lcd_byte(self.LCD_SETCGRAMADDR | (location << 3), self.LCD_CMD)
+        for i in range(8):
+            self.lcd_byte(pattern[i], self.LCD_CHR)
 
     def enable(self, enable=True):
         """Enable or disable display.
