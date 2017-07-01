@@ -1,7 +1,7 @@
 # MicroPython CharLCD library
 ![lcd](http://www.rototron.info/wp-content/uploads/LCDMP_01.jpg "lcd")
 
-A library to control a character LCD display in 4 bit mode on an ESP8266 running MicroPython.
+A library to control a character LCD display in 4 bit mode on an ESP8266 or ESP32 running MicroPython.
 
 Implementation includes:
 * Display text strings
